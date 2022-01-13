@@ -8,7 +8,7 @@ from DAOs.suppliers import suppliers
 
 class _Repository:
     def __init__(self):
-        self._conn = sqlite3.connect('Hats.db')
+        self._conn = sqlite3.connect('database.db')
         self.hats = hats(self._conn)
         self.suppliers = suppliers(self._conn)
         self.orders = orders(self._conn)
@@ -44,6 +44,9 @@ class _Repository:
                     SELECT hats.topping,suppliers.name,orders.location FROM (hats inner join orders on hats.id=order.hat)inner join suppliers on hats.supplier=suppliers.id
                 """)
         return c.fetchall()
+    def order_pizza(self):
+        c=self._conn.cursor()
+        c.execute()
 #singelton
 repo = _Repository()
 atexit.register(repo._close)
