@@ -7,6 +7,7 @@ from DAOs.orders import orders
 from DTOs.order import order
 import sqlite3
 
+
 file=open('config.txt' , mode='r')
 lines=file.readlines()
 get_numbers=lines[0].split(',')
@@ -35,7 +36,7 @@ for line in lines:
 file=open('orders.txt' , mode='r')
 lines=file.readlines()
 order_id=1
-output=open('summary.txt', mode='w')
+output=open('output.txt', mode='w')
 
 for line in lines:
     splitted_line=line.split(',')
@@ -62,13 +63,6 @@ for line in lines:
 
 
 output.close()
-
-
-
-
-# DROP TABLE hats;
-# DROP TABLE orders;
-# DROP TABLE suppliers
 
 
 
