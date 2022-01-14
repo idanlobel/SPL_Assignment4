@@ -15,4 +15,4 @@ class suppliers:
         c.execute("""
             SELECT name FROM suppliers WHERE id = ?
         """, [supplier_id])
-        return supplier(*c.fetchone())
+        return c.fetchone()

@@ -12,9 +12,35 @@ class hats:
                        INSERT INTO hats (id,topping,supplier,quantity) VALUES (?, ?,?,?)
                    """, [hat.id, hat.topping,hat.supplier,hat.quantity])
 
-    def find(self, hat_id):
+    def find(self, topping):
         c = self._conn.cursor()
         c.execute("""
-            SELECT topping FROM students WHERE id = ?
-        """, [hat_id])
-        return hat(*c.fetchone())
+            SELECT id FROM hats WHERE topping = ?
+        """, [topping])
+        return c.fetchone()
+
+
+    def get_first_supplierid_of_topping(self,topping):
+        c = self._conn.cursor()
+        c.execute("""
+                  SELECT supplier FROM hats WHERE topping = ?
+                  ORDER BY supplier
+              """, [topping])
+        return c.fetchone()
+
+
+    def update_toppings_quantity(self,supplier_id,topping):
+        c=self._conn.cursor()
+        c.execute("""
+            UPDATE hats
+            SET quantity=quantity-1
+            where supplier=? and topping=?
+        """, [supplier_id,topping])
+
+
+    def delete_if_zero(self):
+        c = self._conn.cursor()
+        c.execute("""
+                   DELETE from hats
+                   WHERE quantity=0
+               """)
