@@ -16,6 +16,7 @@ class hats:
         c = self._conn.cursor()
         c.execute("""
             SELECT id FROM hats WHERE topping = ?
+            ORDER BY supplier
         """, [topping])
         return c.fetchone()
 
