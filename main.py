@@ -1,3 +1,5 @@
+import sys
+
 from DTOs.hat import hat
 from DAOs.hats import hats
 from DAOs.suppliers import suppliers
@@ -7,7 +9,8 @@ from DAOs.orders import orders
 from DTOs.order import order
 import sqlite3
 
-file=open('config.txt' , mode='r')
+
+file=open(sys.argv[1] , mode='r')
 lines=file.readlines()
 get_numbers=lines[0].split(',')
 number_of_hat_types=int(get_numbers[0])
@@ -32,10 +35,10 @@ for line in lines:
        _Repository.repo.suppliers.insert(created_supplier)
 
 #doing orders:
-file=open('orders.txt' , mode='r')
+file=open(sys.argv[2] , mode='r')
 lines=file.readlines()
 order_id=1
-output=open('summary.txt', mode='w')
+output=open(sys.argv[3], mode='w')
 
 for line in lines:
     splitted_line=line.split(',')
@@ -62,13 +65,6 @@ for line in lines:
 
 
 output.close()
-
-
-
-
-# DROP TABLE hats;
-# DROP TABLE orders;
-# DROP TABLE suppliers
 
 
 
