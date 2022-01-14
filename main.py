@@ -10,7 +10,7 @@ from DTOs.order import order
 import sqlite3
 
 
-file=open(sys.argv[1] , mode='r')
+file=open('config.txt' , mode='r')
 lines=file.readlines()
 get_numbers=lines[0].split(',')
 number_of_hat_types=int(get_numbers[0])
@@ -35,10 +35,10 @@ for line in lines:
        _Repository.repo.suppliers.insert(created_supplier)
 
 #doing orders:
-file=open(sys.argv[2] , mode='r')
+file=open('orders.txt' , mode='r')
 lines=file.readlines()
 order_id=1
-output=open(sys.argv[3], mode='w')
+output=open('output.txt', mode='w')
 
 for line in lines:
     splitted_line=line.split(',')
@@ -55,9 +55,9 @@ for line in lines:
 
     writeme=[]
     writeme.append(topping)
-    writeme.append(' , ')
+    writeme.append(',')
     writeme.append(supplier_name[0])
-    writeme.append(' , ')
+    writeme.append(',')
     writeme.append(location)
     writemeinstring=''.join(writeme)
     output.write(writemeinstring)

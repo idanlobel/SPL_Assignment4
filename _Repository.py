@@ -9,7 +9,7 @@ from DAOs.suppliers import suppliers
 
 class _Repository:
     def __init__(self):
-        self._conn = sqlite3.connect(sys.argv[4])
+        self._conn = sqlite3.connect('database.db')
         self.hats = hats(self._conn)
         self.suppliers = suppliers(self._conn)
         self.orders = orders(self._conn)
